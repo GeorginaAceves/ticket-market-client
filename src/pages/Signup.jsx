@@ -4,19 +4,20 @@ import { useNavigate } from "react-router-dom";
 import "./auth.css";
 import * as PATHS from "../utils/paths";
 import * as USER_HELPERS from "../utils/userToken";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
-//import handleChange from 'react-bootstrap/handleChange';
-
+import {
+  Form,
+  Button,
+  Row,
+  Col,
+  InputGroup,
+  FormControl,
+  Container,
+} from "react-bootstrap";
 
 export default function Signup({ authenticate }) {
   const [form, setForm] = useState({
     username: "",
-    email:"",
+    email: "",
     password: "",
   });
   const { username, email, password } = form;
@@ -28,11 +29,8 @@ export default function Signup({ authenticate }) {
     const { name, value } = event.target;
     return setForm({ ...form, [name]: value });
   }
-  
-  function handleChange () {
 
-  }
-
+  function handleChange() {}
 
   function handleFormSubmission(event) {
     event.preventDefault();
@@ -59,72 +57,69 @@ export default function Signup({ authenticate }) {
   return (
     <div className="auth__form">
       <h3>Sign Up</h3>
-      <form onSubmit={handleFormSubmission} >
-
-      <Form>
-  <Row>
-    <Col>
-      <Form.Control placeholder="First name" />
-    </Col>
-    <Col>
-      <Form.Control placeholder="Last name" />
-    </Col>
-  </Row>
-</Form>
-
-<Form>
-  <Row>
-<Col xs="auto">
-      <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
-        Username
-      </Form.Label>
-      <InputGroup>
-        <InputGroup.Text>@</InputGroup.Text>
-        <FormControl id="inlineFormInputGroup" placeholder="Username" />
-      </InputGroup>
-    </Col>
-    </Row>
-</Form>
-
-<Form>
-  <Form.Group as={Row} controlId="formHorizontalEmail">
-    <Form.Label column sm={2}>
+      <form onSubmit={handleFormSubmission}>
+        <Container className="mb-5">
+          <Form>
   
-    </Form.Label>
-    <Col sm={10}>
-      <Form.Control type="email" placeholder="Email" />
-    </Col>
-  </Form.Group>
+          <Row >
+            <Col xs={6} className="mb-3">
+              <Form.Control placeholder="First name" />
+            </Col>
+            <Col xs={6} className="mb-3">
+              <Form.Control placeholder="Last name" />
+            </Col>
+          </Row>
 
-  <Form.Group as={Row} controlId="formHorizontalPassword">
-    <Form.Label column sm={2}>
-     
-    </Form.Label>
-    <Col sm={10}>
-      <Form.Control type="password" placeholder="Password" />
-    </Col>
-  </Form.Group>
- 
-    <Form.Group as={Row}>
-      <Form.Label as="legend" column sm={30}>
-        What interests you more?
-      </Form.Label>
-      
-      <Col sm={30}>
-      <Button variant="outline-secondary">Selling</Button>{' '}
-      <Button variant="outline-secondary">Buying</Button>{' '}
-      <Button variant="outline-secondary">Both</Button>{' '}
-      </Col>
-    
-    </Form.Group>
-  
-  <Form.Group as={Row} controlId="formHorizontalCheck">
-    <Col sm={{ span: 10, offset: 2 }}>
-      <Form.Check label="Remember me" />
-    </Col>
-  </Form.Group>
+        </Form>
 
-  <Form.Group>
+        <Form>
+          <Row>
+            <Col xs={12}>
+              <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
+                Username
+              </Form.Label>
+              <InputGroup>
+                <InputGroup.Text>@</InputGroup.Text>
+                <FormControl id="inlineFormInputGroup" placeholder="Username" />
+              </InputGroup>
+            </Col>
+          </Row>
+        </Form>
+
+        <Form>
+          <Form.Group as={Row} controlId="formHorizontalEmail">
+            <Form.Label column sm={2}></Form.Label>
+            <Col xs={12}>
+              <Form.Control type="email" placeholder="Email" />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formHorizontalPassword">
+            <Form.Label column sm={2}></Form.Label>
+            <Col xs={12}>
+              <Form.Control type="password" placeholder="Password" />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row}>
+            <Form.Label as="legend" column sm={30}>
+              What interests you more?
+            </Form.Label>
+
+            <Col sm={30}>
+              <Button variant="outline-secondary">Selling</Button>{" "}
+              <Button variant="outline-secondary">Buying</Button>{" "}
+              <Button variant="outline-secondary">Both</Button>{" "}
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formHorizontalCheck">
+            <Col >
+              <Form.Check label="Remember me" />
+            </Col>
+          </Form.Group>
+
+          <Form.Group>
             <Form.Check
               required
               name="terms"
@@ -138,13 +133,13 @@ export default function Signup({ authenticate }) {
             />
           </Form.Group>
 
-  <Form.Group as={Row}>
-    <Col sm={{ span: 10, offset: 2 }}>
-      <Button type="submit">Sign up</Button>
-    </Col>
-  </Form.Group>
-</Form>
-
+          <Form.Group as={Row} className="mt-3">
+            <Col >
+              <Button type="submit">Sign up</Button>
+            </Col>
+          </Form.Group>
+        </Form>
+        </Container>
 
         {error && (
           <div>
@@ -152,7 +147,6 @@ export default function Signup({ authenticate }) {
             <p>{error.message}</p>
           </div>
         )}
-
       </form>
     </div>
   );
