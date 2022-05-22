@@ -7,6 +7,7 @@ import routes from "./config/routes";
 import * as USER_HELPERS from "./utils/userToken";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from "./components/Footer/Footer";
+import TicketsPage from "./pages/TicketsPage";
 
 export default function App() {
 
