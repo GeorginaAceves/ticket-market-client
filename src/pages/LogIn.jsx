@@ -11,10 +11,10 @@ import Button from 'react-bootstrap/Button';
 
 export default function LogIn({ authenticate }) {
   const [form, setForm] = useState({
-    username: "",
+    email: "",
     password: "",
   });
-  const { username, password } = form;
+  const { email, password } = form;
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ export default function LogIn({ authenticate }) {
   function handleFormSubmission(event) {
     event.preventDefault();
     const credentials = {
-      username,
+      email,
       password,
     };
     login(credentials).then((res) => {
@@ -42,7 +42,7 @@ export default function LogIn({ authenticate }) {
 
   return (
     <div>
-      <h3>Log In</h3>
+      <h3 className="mb-5">Log In</h3>
       <form onSubmit={handleFormSubmission} className="signup__form">
       <>
   <div className="form-login">
@@ -51,13 +51,17 @@ export default function LogIn({ authenticate }) {
     label="Email address"
     className="mb-3"
   >
-    <Form.Control type="email" placeholder="name@example.com" />
+    <Form.Control type="email" placeholder="name@example.com" value={form.email} onChange={handleInputChange} name= "email"/>
   </FloatingLabel>
-  <FloatingLabel controlId="floatingPassword" label="Password">
-    <Form.Control type="password" placeholder="Password" />
+  <FloatingLabel 
+  controlId="floatingPassword" 
+  label="Password"
+  className="mb-3">
+    <Form.Control type="password" placeholder="Password" value={form.password} onChange={handleInputChange} name= "password"/>
   </FloatingLabel>
   </div>
 </>
+
 
         {error && (
           <div className="error-block">

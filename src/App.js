@@ -8,6 +8,8 @@ import * as USER_HELPERS from "./utils/userToken";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from "./components/Footer/Footer";
 import TicketsPage from "./pages/TicketsPage";
+import SearchBar from "./components/searchBar/SearchBar";
+//import TicketsData from './Data.json'
 
 export default function App() {
 
@@ -55,7 +57,13 @@ export default function App() {
   }
   return (
     <div className="App">
+      
       <Navbar handleLogout={handleLogout} user={user} />
+      <div className="search-center">
+        <SearchBar placeholder="Search your event" /*data={TicketsData}*//>
+      </div>
+      
+      
       <Routes>
         {routes({ user, authenticate, handleLogout }).map((route) => (
           <Route key={route.path} path={route.path} element={route.element} />

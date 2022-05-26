@@ -9,20 +9,20 @@ const ProfilePage = (props) => {
     <div>
       Profile Page
       {props?.user?.username}
-      <div class="wrapper">
-        <div class="profile-card js-profile-card">
-          <div class="profile-card__img">
+      <div className="wrapper">
+        <div className="profile-card js-profile-card">
+          <div className="profile-card__img">
             <img src="./images/user-image.png" alt="profile card" />
           </div>
 
-          <div class="profile-card__cnt js-profile-cnt">
-            <div class="profile-card__name">
-              <strong>USERNAME</strong>
+          <div className="profile-card__cnt js-profile-cnt">
+            <div className="profile-card__name">
+              <strong >{props?.user?.username}</strong>
             </div>
 
-            <div class="profile-card-inf">
-              <div class="profile-card-inf__item">
-          <ui className="list-unstyled">
+            <div className="profile-card-inf">
+              <div className="profile-card-inf__item">
+          <ul className="list-unstyled">
 
               <li>
               <a href="/favorites">Favorites</a>
@@ -36,7 +36,7 @@ const ProfilePage = (props) => {
               <a href="/shoppinghistory">Shopping History</a>
               </li>
 
-            </ui>
+            </ul>
               </div>
             </div>
           </div>

@@ -7,6 +7,8 @@ import * as PATHS from "../utils/paths";
 import TicketsPage from "../pages/TicketsPage";
 import ProfilePage from "../pages/ProfilePage";
 import FavoritesPage from "../pages/FavoritesPage";
+import AllTicketsPage from "../pages/AllTicketsPage";
+import NewTicketPage from "../pages/NewTicketPage";
 
 
 const routes = (props) => {
@@ -41,6 +43,22 @@ const routes = (props) => {
       path: "/auth/login",
       element: <Login {...props} />,
     },
+    
+    {
+      path: "/alltickets",
+      element: <TicketsPage {...props} />,
+    },
+
+    {
+      path: "/messages",
+      element: <TicketsPage {...props} />,
+    },
+
+    {
+      path: "/newticket",
+      element: <NewTicketPage {...props} />,
+    },
+
     {
       path: "/protected",
       element: user ? (

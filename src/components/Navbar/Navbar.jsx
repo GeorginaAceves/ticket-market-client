@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import * as PATHS from "../../utils/paths";
-import * as CONSTS from "../../utils/consts";
+
 
 const Navbar = (props) => {
   return (
@@ -14,8 +14,17 @@ const Navbar = (props) => {
       <div className="nav__authLinks">
         {props.user ? (
           <>
-            <Link to={PATHS.PROTECTEDPAGE} className="authLink">
-              Protected Page
+            <Link to={"/alltickets"} className="authLink">
+              All tickets
+            </Link>
+            <Link to={"/newticket"} className="authLink">
+              New ticket
+            </Link>
+            <Link to={PATHS.PROFILEPAGE} className="authLink">
+              User - {props.user?.username}
+            </Link>
+            <Link to={"/messages"} className="authLink">
+              Messages
             </Link>
             <button className="nav-logoutbtn" onClick={props.handleLogout}>
               Logout

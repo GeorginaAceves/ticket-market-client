@@ -19,14 +19,14 @@ function Footer() {
           {/* Column3 */}
           <div className="col">
             <h5>Social Media</h5>
-            <ui className="list-unstyled">
+            <ul className="list-unstyled">
               <li>
               <a href="https://github.com/GeorginaAceves">Github</a>
               </li>
               <li>
               <a href="https://linkedin.com/in/georgina-aceves/">LinkedIn</a>
               </li>
-            </ui>
+            </ul>
           </div>
         </div>
         <hr />

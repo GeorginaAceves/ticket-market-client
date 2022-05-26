@@ -46,3 +46,18 @@
 .content-wrap{
   flex: 1;
 }
+
+
+
+.tickets-content{
+  width: 100%;
+  display:flex;
+  flex-wrap: wrap;
+}
+
+.search-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}

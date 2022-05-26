@@ -56,7 +56,7 @@ export default function Signup({ authenticate }) {
 
   return (
     <div className="auth__form">
-      <h3>Sign Up</h3>
+      <h3 className="mb-5">Sign Up</h3>
       <form onSubmit={handleFormSubmission}>
         <Container className="mb-5">
           <Form>
@@ -97,16 +97,16 @@ export default function Signup({ authenticate }) {
           <Form.Group as={Row} controlId="formHorizontalPassword">
             <Form.Label column sm={2}></Form.Label>
             <Col xs={12}>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control type="password" placeholder="Password" className="mb-4"/>
             </Col>
-          </Form.Group>
+          </Form.Group >
 
           <Form.Group as={Row}>
-            <Form.Label as="legend" column sm={30}>
-              What interests you more?
+            <Form.Label as="legend" column sm={30} >
+               What interests you more?
             </Form.Label>
 
-            <Col sm={30}>
+            <Col sm={30} className="mb-4">
               <Button variant="outline-secondary">Selling</Button>{" "}
               <Button variant="outline-secondary">Buying</Button>{" "}
               <Button variant="outline-secondary">Both</Button>{" "}
@@ -133,7 +133,7 @@ export default function Signup({ authenticate }) {
             />
           </Form.Group>
 
-          <Form.Group as={Row} className="mt-3">
+          <Form.Group as={Row} className="mt-4">
             <Col >
               <Button type="submit">Sign up</Button>
             </Col>
