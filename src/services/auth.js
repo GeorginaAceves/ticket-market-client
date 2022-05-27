@@ -46,6 +46,7 @@ export function getLoggedIn() {
 }
 
 export function signup(credentials) {
+  console.log("signup, cre", credentials)
   return authService
     .post("/signup", credentials)
     .then(successStatus)

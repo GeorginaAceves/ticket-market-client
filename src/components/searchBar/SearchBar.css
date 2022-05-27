@@ -9,6 +9,8 @@
     border-radius: 2px;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
     font-size: 18px;
     padding: 15px;
     height: 30px;

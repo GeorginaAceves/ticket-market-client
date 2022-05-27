@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { signup } from "../services/auth";
 import { useNavigate } from "react-router-dom";
 import "./auth.css";
@@ -14,13 +14,19 @@ import {
   Container,
 } from "react-bootstrap";
 
+
 export default function Signup({ authenticate }) {
   const [form, setForm] = useState({
-    username: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
+    username: "",
+    remember: false,
+    agree: false,
+    interest: ""
   });
-  const { username, email, password } = form;
+  const { firstName, lastName, username, email, password,agree, remember,interest } = form;
   const [error, setError] = useState(null);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -32,13 +38,25 @@ export default function Signup({ authenticate }) {
 
   function handleChange() {}
 
+
+  useEffect(() => {
+    console.log(form)
+  }, [form])
+
   function handleFormSubmission(event) {
     event.preventDefault();
+    console.log("SIGN UP")
     const credentials = {
+      firstName,
+      lastName,
       username,
       email,
       password,
+      remember,
+      agree,
+      interest
     };
+    console.log("credentiall", credentials)
     signup(credentials).then((res) => {
       if (!res.status) {
         // unsuccessful signup
@@ -57,22 +75,16 @@ export default function Signup({ authenticate }) {
   return (
     <div className="auth__form">
       <h3 className="mb-5">Sign Up</h3>
-      <form onSubmit={handleFormSubmission}>
+      <form>
         <Container className="mb-5">
-          <Form>
-  
           <Row >
             <Col xs={6} className="mb-3">
-              <Form.Control placeholder="First name" />
+              <Form.Control placeholder="First name" name="firstName" value={firstName} onChange={handleInputChange}/>
             </Col>
             <Col xs={6} className="mb-3">
-              <Form.Control placeholder="Last name" />
+              <Form.Control placeholder="Last name" name="lastName" value={lastName} onChange={handleInputChange}/>
             </Col>
           </Row>
-
-        </Form>
-
-        <Form>
           <Row>
             <Col xs={12}>
               <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
@@ -80,24 +92,22 @@ export default function Signup({ authenticate }) {
               </Form.Label>
               <InputGroup>
                 <InputGroup.Text>@</InputGroup.Text>
-                <FormControl id="inlineFormInputGroup" placeholder="Username" />
+                <FormControl id="inlineFormInputGroup" placeholder="Username" name="username" value={username} onChange={handleInputChange}/>
               </InputGroup>
             </Col>
           </Row>
-        </Form>
 
-        <Form>
           <Form.Group as={Row} controlId="formHorizontalEmail">
             <Form.Label column sm={2}></Form.Label>
             <Col xs={12}>
-              <Form.Control type="email" placeholder="Email" />
+              <Form.Control type="email" placeholder="Email" name="email" value={email} onChange={handleInputChange}/>
             </Col>
           </Form.Group>
 
           <Form.Group as={Row} controlId="formHorizontalPassword">
             <Form.Label column sm={2}></Form.Label>
             <Col xs={12}>
-              <Form.Control type="password" placeholder="Password" className="mb-4"/>
+              <Form.Control type="password" placeholder="Password" className="mb-4" name="password" value={password} onChange={handleInputChange}/>
             </Col>
           </Form.Group >
 
@@ -107,38 +117,46 @@ export default function Signup({ authenticate }) {
             </Form.Label>
 
             <Col sm={30} className="mb-4">
-              <Button variant="outline-secondary">Selling</Button>{" "}
-              <Button variant="outline-secondary">Buying</Button>{" "}
-              <Button variant="outline-secondary">Both</Button>{" "}
+              <Button variant="outline-secondary" onClick={() => setForm({...form, interest: "Selling"})}>Selling :)</Button>{" "}
+              <Button variant="outline-secondary" onClick={() => setForm({...form, interest: "Buying"})}>Buying</Button>{" "}
+              <Button variant="outline-secondary" onClick={() => setForm({...form, interest: "Both"})}>Both</Button>{" "}
             </Col>
           </Form.Group>
 
           <Form.Group as={Row} controlId="formHorizontalCheck">
             <Col >
-              <Form.Check label="Remember me" />
+              <Form.Check label="Remember me" name="remember" checked={remember}  onChange={ (e) => {
+                if(e.target.value === "on"){
+                  setForm({...form, remember: true})
+                }else{
+                  setForm({...form, remember: false})
+                }
+                
+              }}/>
             </Col>
           </Form.Group>
 
           <Form.Group>
             <Form.Check
               required
-              name="terms"
+              name="agree"
               label="Agree to terms and conditions"
-              onChange={handleChange}
-              isInvalid={!!errors.terms}
-              feedback={errors.terms}
-              feedbackType="invalid"
-              id="validationFormik106"
-              feedbackTooltip
+              onChange={ (e) => {
+                if(e.target.value === "on"){
+                  setForm({...form, agree: true})
+                }else{
+                  setForm({...form, agree: false})
+                }
+              }}
+              checked={agree}
             />
           </Form.Group>
 
           <Form.Group as={Row} className="mt-4">
             <Col >
-              <Button type="submit">Sign up</Button>
+              <Button onClick={handleFormSubmission}>Sign up</Button>
             </Col>
           </Form.Group>
-        </Form>
         </Container>
 
         {error && (
